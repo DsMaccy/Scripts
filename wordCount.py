@@ -49,7 +49,7 @@ if __name__ == "__main__":
 	
 	for arg in sys.argv:
 		if (inputFlag):
-			inFile = open(arg, 'r')
+			inFile = arg
 			inputFlag = FALSE
 		if (outputFlag):
 			outFile = open(arg, 'w')
@@ -77,7 +77,12 @@ if __name__ == "__main__":
 		print(analyzeText(text))
 		
 	else:
-		text += inFile.read()
+		if inFile[-4:] == ".doc" or inFile[-5:] == ".docx":
+			# Parse as a doc file
+			pass
+		else:
+			inFile = open(inFile, 'r')
+			text += inFile.read()
 	
 	information = analyzeText(text)
 	
